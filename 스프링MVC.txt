@@ -1,0 +1,14 @@
+## Spring MVC
+- model2구조를 사용한 프로젝트 생성
+- Spring MVC에 두가지 방법
+	- Spring Legacy Project
+		- WAS-tomcat 경험과 model2 경험 필요
+		- 상대적으로 설정하는 것이 어렵다.
+		- 실무에서 기존 프로젝트를 이해하기 쉽다 (실무에서 주로 사용하기때문에)
+		- 모든 버전의 스프링을 사용가능
+		- 단점 : 리소스가 많이 필요하다.
+	- Spring Starter Project(Spring Boot)
+		- 최대한 간결하게 실행, 배포하기 위한 방법
+		- WAS없이 실행가능
+		- 최근 유행 > 빠르게 처리가능하기에 간단한 테스트용으로 자주 사용
+		- 단점 : jsp뷰 별도의 설정 필요
