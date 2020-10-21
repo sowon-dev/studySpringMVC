@@ -19,6 +19,7 @@ insertMember.jsp 입니다
     NAME : <input type="text" name="username"> <br>
     EMAIL : <input type="text" name="useremail"> <br>
     
+    <input type="button" onclick="location.href='/main'" value="메인으로 돌아가기">          
     <input type="submit" value="회원가입">          
   </form>  
 </fieldset>
