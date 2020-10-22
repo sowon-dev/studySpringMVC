@@ -5,21 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/resources/style.css" rel="stylesheet" />
 </head>
 <body>
 loginFrom.jsp
 <h1>views의 폴더명은 컨트롤러의 모듈명과 동일</h1>
-<h1> 로그인 </h1>
 
 <fieldset>
-  <legend> ITWILL 로그인 </legend>
-  <!-- <form action="/member/login" method="post"> -->
-  <form action="" method="post">
-    ID : <input type="text" name="userid"> <br>
-    PW : <input type="password" name="userpw"> <br>
-    <input type="submit" value="로그인">          
-    <input type="button" onclick="location.href='/member/insert'" value="회원가입">          
-  </form>  
+<legend>로그인</legend>
+	<form action="" method="post" name="fr">
+		아이디 <input type="text" name="userid" required ><br>
+		비밀번호 <input type="password" name="userpw"><br>
+		<input type="submit" class="btn" value="로그인">
+		<input type="button" class="btn" value="회원가입" onclick="location.href='/member/insert'">
+	</form>
 </fieldset>
 </body>
 </html>

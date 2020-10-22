@@ -53,12 +53,12 @@ public class MemberController {
 		//2. 전달된 파라미터 받기
 		//request.getParameter라는 내장객체가 없다. 따라서 메서드의 매개변수를 통해 가져올 수 있다.
 		//l.info("C: "+ request.getParameter()); 에러발생
-		l.info("C: "+ vo);
+		//l.info("C: "+ vo);
 		
 		//3. 서비스객체 생성(직접생성안하고 의존주입)
 		//3-2. 서비스객체호출
 		service.insertMember(vo);		
-		l.info("C: 회원가입 처리페이지 POST");
+		l.info("C: 회원가입 처리페이지 POST"+ vo);
 		
 		//4. 로그인페이지로 이동(주소줄과 view페이지 동시에 insert->login 변경되어야함)
 		return "redirect:/member/login";
@@ -126,4 +126,50 @@ public class MemberController {
 		session.invalidate();
 		// return "redirect:/member/main"; 얼럿창출력안하고싶을때 사용
 	}
+
+	/* 회원정보보기 */
+	// http://localhost:8088/member/info
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public void infoGET(HttpSession session, Model model) throws Exception{
+		
+		//세션 객체 안에 있는 ID정보 저장
+		String id = (String) session.getAttribute("id");
+		l.info("C: 회원정보보기 GET의 아이디 "+id);
+		
+		//서비스안의 회원정보보기 메서드 호출
+		MemberVO vo = service.readMember(id);
+		
+		//정보저장 후 페이지 이동
+		model.addAttribute("memVO", vo);
+		l.info("C: 회원정보보기 GET의 VO "+ vo);
+	}
+	
+	/* 회원정보 수정 */
+	@RequestMapping(value="/update", method = RequestMethod.GET)
+	public String updateGET(HttpSession session, Model model) throws Exception{
+		
+		//세션 객체 안에 있는 ID정보 저장
+		//String id = (String) session.getAttribute("id");
+		//l.info("C: 회원정보수정 GET의 아이디 "+id);
+		
+		//서비스안의 회원정보보기 메서드 호출
+		//MemberVO vo = service.readMember(id);
+		
+		//정보저장 후 페이지 이동
+		//model.addAttribute("memVO", vo);
+		
+		//위의 3단계를 한 줄에 작성 가능
+		model.addAttribute("memVO", service.readMember((String)session.getAttribute("id")));
+		
+		return "/member/updateForm";
+	}
+	
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public String updatePOST(MemberVO vo) throws Exception{
+		l.info("C: 회원정보수정 입력페이지 POST");
+		
+		service.updateMember(vo);
+		return "/member/main";
+	}
+	
 }

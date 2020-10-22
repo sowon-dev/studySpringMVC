@@ -13,4 +13,9 @@ public interface MemberService {
 	// 로그인기능
 	public MemberVO loginMember(MemberVO vo);
 	
+	//회원정보 보기
+	public MemberVO readMember(String id);
+	
+	//회원정보 수정
+	public void updateMember(MemberVO vo);
 }

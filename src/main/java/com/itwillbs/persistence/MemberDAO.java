@@ -15,13 +15,13 @@ public interface MemberDAO {
 	//R: 회원 정보 조회 - ID,PW정보에 해당하는 사용자 정보
 	public MemberVO readMemberWithIDPW(String userid,String userpw) throws Exception;
 
-	//U: 회원정보수정 (숙제)
+	//U: 회원정보수정
+	public void updateMember(MemberVO vo) throws Exception;
+	
+	//D: 회원정보삭제
 	
 	
-	//D: 회원정보삭제 (숙제)
-	
-	
-	//회원정보리스트 출력 (숙제)
+	//회원정보리스트 출력
 	
 
 }

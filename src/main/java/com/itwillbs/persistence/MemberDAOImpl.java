@@ -62,15 +62,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne(namespace+".readMemberWithIDPW", paramMap);		
 	}
 
-	//회원가입수정
+	//회원정보 수정(정보를 가지고 mapper로 이동)
+	@Override
+	public void updateMember(MemberVO vo) throws Exception {
+		sqlSession.update(namespace+".updateMember", vo);		
+	}
 
-	//회원삭제
-
-
-
-	
-	
-	
 	
 	
 }

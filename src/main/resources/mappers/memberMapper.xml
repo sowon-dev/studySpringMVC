@@ -29,4 +29,9 @@
 		where userid=#{userid} and userpw=#{userpw}
 	</select>	
 	
+	<update id="updateMember">
+		update tbl_member set username=#{username}, useremail=#{useremail}
+		where userid=#{userid} and userpw=#{userpw}
+	</update>
+	
 </mapper>
