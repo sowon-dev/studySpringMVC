@@ -1,6 +1,7 @@
 package com.itwillbs.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -68,6 +69,24 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.update(namespace+".updateMember", vo);		
 	}
 
+	//회원탈퇴
+	@Override
+	public void deleteMember(MemberVO vo) throws Exception {
+		int check = sqlSession.delete(namespace+".deleteMember",vo);
+		System.out.println("DAO : deleteMember() "+check);	
+	}
+
+	//관리자용 회원목록
+	@Override
+	public List<MemberVO> getMemberList() {
+		//while문 대신 selectList하면 됨! 세상간단!
+		List<MemberVO> memberList = sqlSession.selectList(namespace+".memberList");
+		System.out.println("DAO: getMemberList결과 - "+memberList);
+		return memberList;
+		//아래처럼 나타낼 수 있으나 변수에 담은 이유는 캐스팅이 필요없음을 보여주고 콘솔에 출력하고자함임
+		//return sqlSession.selectList(namespace+".memberList");
+	}
+	
 	
 	
 }

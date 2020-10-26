@@ -1,5 +1,7 @@
 package com.itwillbs.persistence;
 
+import java.util.List;
+
 import com.itwillbs.domain.MemberVO;
 
 public interface MemberDAO {
@@ -18,10 +20,11 @@ public interface MemberDAO {
 	//U: 회원정보수정
 	public void updateMember(MemberVO vo) throws Exception;
 	
-	//D: 회원정보삭제
-	
-	
-	//회원정보리스트 출력
-	
+	//D: 회원탈퇴
+	public void deleteMember(MemberVO vo) throws Exception;
 
+	//관리자용 회원목록
+	public List<MemberVO> getMemberList();
+	
+	
 }

@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -65,7 +67,27 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
-	
+	//회원정보삭제
+	@Override
+	public void deleteMember(MemberVO vo) {
+		try {
+			mdao.deleteMember(vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	//관리자용 회원목록
+	@Override
+	public List<MemberVO> getMemberList() {
+		//List<MemberVO> memberList = mdao.getMemberList();
+		//return memberList;
+		return mdao.getMemberList();
+	}
+
+
 
 	
+	
+
 }

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/resources/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/style.css" rel="stylesheet" />
 </head>
 <body>
 /member/info.jsp
@@ -32,6 +32,6 @@
 		<td>${memVO.regdate }</td>
 	</tr>
 </table>
-<input type="button" value="메인으로" class="btn" onclick="location.href='/member/main'">
+<input type="button" value="메인으로" class="btn" onclick="location.href='/test/member/main'">
 </body>
 </html>

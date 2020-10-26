@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/resources/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/style.css" rel="stylesheet" />
 </head>
 <body>
 loginFrom.jsp
@@ -13,11 +13,11 @@ loginFrom.jsp
 
 <fieldset>
 <legend>로그인</legend>
-	<form action="" method="post" name="fr">
+	<form action="/test/member/login" method="post" name="fr">
 		아이디 <input type="text" name="userid" required ><br>
 		비밀번호 <input type="password" name="userpw"><br>
 		<input type="submit" class="btn" value="로그인">
-		<input type="button" class="btn" value="회원가입" onclick="location.href='/member/insert'">
+		<input type="button" class="btn" value="회원가입" onclick="location.href='/test/member/insert'">
 	</form>
 </fieldset>
 </body>

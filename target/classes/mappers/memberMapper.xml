@@ -30,8 +30,17 @@
 	</select>	
 	
 	<update id="updateMember">
-		update tbl_member set username=#{username}, useremail=#{useremail}
+		update tbl_member set username=#{username}, useremail=#{useremail},updatedate=now()
 		where userid=#{userid} and userpw=#{userpw}
 	</update>
+	
+	<delete id="deleteMember">
+		delete from tbl_member where userid=#{userid} and userpw=#{userpw}
+	</delete>
+	
+	<select id="memberList" resultType="com.itwillbs.domain.MemberVO">
+		select * from tbl_member where userid not in('admin')
+	</select>
+	
 	
 </mapper>

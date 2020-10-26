@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/resources/style.css" rel="stylesheet" />
+<link href="${pageContext.request.contextPath}/resources/style.css" rel="stylesheet" />
 </head>
 <body>
 insertMember.jsp 입니다
@@ -13,13 +13,13 @@ insertMember.jsp 입니다
 
 <fieldset>
 <legend>회원가입</legend>
-	<form action="/member/insert" method="post" name="fr">
+	<form action="/test/member/insert" method="post" name="fr">
 		아이디 <input type="text" name="userid" required><br>
 		비밀번호 <input type="password" name="userpw"><br>
 		이름 <input type="text" name="username"><br>
 		이메일 <input type="text" name="usereamail"><br>
 		<input type="submit" class="btn" value="회원가입하기">
-		<input type="button" onclick="location.href='/main'" value="메인으로 돌아가기">
+		<input type="button" class="btn" onclick="location.href='/test/member/main'" value="메인으로 돌아가기">
 	</form>
 </fieldset>
 

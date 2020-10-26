@@ -32,7 +32,6 @@ public class MemberController {
 	
 	/* 회원가입 처리하는 동작 */
 	//insert라는 하나의 주소로 get과 post방식 즉 입력과 출력 둘 다 처리 가능
-
 	// http://localhost:8088/test/insert
 	// http://localhost:8088/test/member/insert
 	// http://localhost:8088/member/insert
@@ -65,7 +64,6 @@ public class MemberController {
 	}
 	
 	/* 로그인 기능 */
-	// http://localhost:8088/member/login
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET() throws Exception{
@@ -111,12 +109,13 @@ public class MemberController {
 	}//end of loginPOST()
 	
 	/* 메인페이지 */
-	// http://localhost:8088/member/main
+	// http://localhost:8088/test/member/main
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public void mainGET() throws Exception{
+	public String mainGET() throws Exception{
 		//model.addAttribute("mvo", model);
 		l.info("C: 메인 출력페이지 GET");
+		return "/member/main";
 	}
 	
 	/* 로그아웃 */
@@ -128,7 +127,7 @@ public class MemberController {
 	}
 
 	/* 회원정보보기 */
-	// http://localhost:8088/member/info
+	// http://localhost:8088/test/member/info
 	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public void infoGET(HttpSession session, Model model) throws Exception{
 		
@@ -172,4 +171,51 @@ public class MemberController {
 		return "/member/main";
 	}
 	
+	/* 회원정보삭제 */
+	// http://localhost:8088/test/member/delete
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String deleteGET(HttpSession session) throws Exception{
+		l.info("C: 회원정보 삭제 GET");
+		// 세션제어
+		String id = (String) session.getAttribute("id");
+		if(id == null) {
+			return "redirect:/member/main";
+		}
+		return "/member/deleteForm";			
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String deletePOST(MemberVO vo, HttpSession session) throws Exception{
+		l.info("C: 회원정보 삭제 POST");
+		//1. 파라미터값 저장
+		l.info("C: deleteForm전달정보 "+vo);
+		// 2. 전달받은 정보를 가지고 삭제 동작 처리이동
+		// 3. service 객체 - 동작
+		service.deleteMember(vo);
+		// 4. 세션초기화
+		session.invalidate();
+		// 5. 페이지 이동
+		return "redirect:/member/main";			
+	}
+	
+	/* 관리자용 회원 목록 */
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String listGET(HttpSession session, Model model) throws Exception{
+		// 1. 관리자 세션 제어
+		String id = (String) session.getAttribute("id");
+		if(id == null || !(id.equals("admin"))){
+			l.info("C: 관리자아닌 접근 ID - "+id);
+			return "redirect:/member/main";
+		}
+		
+		// 2. 서비스 - 회원 목록 가져오는 동작
+		//List<MemberVO> memberList = service.getMemberList();
+		
+		// 3. 정보 저장 -> 뷰(/member/memberlist.jsp) -> (Model 객체 )
+		model.addAttribute("memberList", service.getMemberList());
+		
+		// 4. 페이지이동
+		return "/member/memberList";
+	}
 }
